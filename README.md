@@ -1,6 +1,6 @@
 [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
 [![GitHub release](https://img.shields.io/github/release/pablotrianda/til.svg)](https://GitHub.com/pablotrianda/til/releases/)
-![status](https://github.com/pablotrianda/til/actions/workflows/go.yml/badge.svg)
+![status](https://github.com/pablotrianda/til/actions/workflows/main.yml/badge.svg)
 
 # TIL 🪣
 `TODAY I LEARN`
