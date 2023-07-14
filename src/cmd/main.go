@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
+	"strings"
 
+	cmd "github.com/pablotrianda/til/src/constants"
 	"github.com/pablotrianda/til/src/pkg/cli"
 	"github.com/pablotrianda/til/src/pkg/db"
 	"github.com/pablotrianda/til/src/pkg/til"
@@ -36,7 +37,7 @@ func main() {
 	}
 
 	if params.List {
-		fmt.Println("Listar todo!!") // TODO
+		tui.List(strings.ToUpper(cmd.APP_NAME), db.ListAll())
 		return
 	}
 
