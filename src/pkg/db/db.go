@@ -58,6 +58,17 @@ func Search(param string) []Til {
 }
 
 /*
+ListAll Return all TIL entries
+*/
+func ListAll() []Til {
+	var tils []Til
+	db := getDatabaseConnection()
+	db.Find(&tils)
+
+	return tils
+}
+
+/*
 getDatabaseConnection Get the connection database, building with the path with the
 APP_NAME and DATABASE_NAME constants.
 */
