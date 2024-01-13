@@ -63,7 +63,7 @@ ListAll Return all TIL entries
 func ListAll() []Til {
 	var tils []Til
 	db := getDatabaseConnection()
-	db.Find(&tils)
+	db.Order("created_at DESC").Find(&tils)
 
 	return tils
 }

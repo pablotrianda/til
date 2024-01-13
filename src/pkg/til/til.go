@@ -1,12 +1,12 @@
 package til
 
 import (
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
 	"strings"
 
+	constans "github.com/pablotrianda/til/src/constants"
 	"github.com/pablotrianda/til/src/pkg/db"
 )
 
@@ -19,7 +19,18 @@ func NewTil() {
 	fullNote := readNoteFromTempFile(file)
 	title := getTitleFromNote(fullNote)
 
+	if fileIsEmpty(title) {
+		return
+	}
+
 	db.SaveTil(title, fullNote)
+}
+
+/*
+Check if the file title is equal to the TIL_DEFAULT_CONTENT
+*/
+func fileIsEmpty(file string) bool {
+	return strings.Split(file, "\n")[0] == constans.TIL_DEFAULT_CONTENT
 }
 
 /*
@@ -27,7 +38,7 @@ createNoteTempFile create a new temp file in /tmp directory
 */
 func createNoteTempFile() string {
 	fileName := "/tmp/_til.md"
-	err := ioutil.WriteFile(fileName, []byte("#  "), 0644)
+	err := os.WriteFile(fileName, []byte(constans.TIL_DEFAULT_CONTENT), 0644)
 	check(err)
 
 	return fileName
