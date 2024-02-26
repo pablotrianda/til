@@ -32,7 +32,7 @@ func main() {
 	db.Init()
 
 	if params.Search != "" {
-		tui.List(params.Search, db.Search(params.Search))
+		tui.List(params.Search, db.FindByTitle(params.Search))
 		return
 	}
 

@@ -95,7 +95,16 @@ getDatabasePath Get the database path, building with the path using the
 DATABASE_NAME constant and the getAppFolder().
 */
 func getDatabasePath() string {
+	if isATestEnv() {
+		return cmd.DATABASE_TEST_NAME
+	}
+
 	return fmt.Sprintf("%s/%s", getAppFolder(), cmd.DATABASE_NAME)
+}
+
+func isATestEnv() bool {
+	tilTest := os.Getenv("TIL_TEST")
+	return tilTest == "1"
 }
 
 func check(params ...any) {
@@ -110,4 +119,18 @@ func check(params ...any) {
 		}
 		log.Panic(err)
 	}
+}
+
+func FindByTitle(title string) []Til {
+	var tils []Til
+	db := getDatabaseConnection()
+
+	db.Where("title = ?", title).Find(&tils)
+
+	return tils
+}
+
+func DeleteTil(title string) {
+	db := getDatabaseConnection()
+	db.Delete(&Til{}, "title = ?", title)
 }
